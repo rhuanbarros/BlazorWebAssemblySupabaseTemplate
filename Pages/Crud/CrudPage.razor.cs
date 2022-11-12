@@ -26,7 +26,7 @@ public partial class CrudPage
 
     private async Task OnValueChangedSearch(string text)
     {
-        _listaListFiltered = _listaList.Where(arg => arg.titulo.Contains(text)).ToList();
+        _listaListFiltered = _listaList.Where(arg => arg.Titulo.Contains(text)).ToList();
     }
     
     private async Task OnClickDelete(Lista item)

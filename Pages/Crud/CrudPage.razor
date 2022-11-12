@@ -31,7 +31,7 @@
             </ToolBarContent>
             <HeaderContent>
                 <MudTh>
-                    <MudTableSortLabel SortBy="new Func<Lista, object>(x=>x.titulo)">
+                    <MudTableSortLabel SortBy="new Func<Lista, object>(x=>x.Titulo)">
                         Título
                     </MudTableSortLabel>
                 </MudTh>
@@ -40,7 +40,7 @@
                 </MudTh>
             </HeaderContent>
             <RowTemplate>
-                <MudTd DataLabel="Título">@context?.titulo</MudTd>
+                <MudTd DataLabel="Título">@context?.Titulo</MudTd>
                 <MudTd>
                     @* <MudIconButton Icon="@Icons.Material.Filled.Edit" aria-label="edit"
                         Size="MudBlazor.Size.Small"

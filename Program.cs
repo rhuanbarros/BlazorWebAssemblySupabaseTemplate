@@ -27,8 +27,8 @@ builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 builder.Services.AddAuthorizationCore();
 
-var url = "https://ybqilfcwesgbkvxmgxpm.supabase.co";
-var key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlicWlsZmN3ZXNnYmt2eG1neHBtIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTcyMjAyNDgsImV4cCI6MTk3Mjc5NjI0OH0.PofQ_rSqpTt6EFt7BTgXwEjYNhanUYWLpExBdFq6t2s";
+var url = "https://pylnesfgmytjegzzculn.supabase.co";
+var key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5bG5lc2ZnbXl0amVnenpjdWxuIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgyOTMwMzcsImV4cCI6MTk4Mzg2OTAzN30.kI29Q_qYWDH5SD6oi5NTwHG6Pxy1e1AUfR8s_ga45lE";
 
 builder.Services.AddScoped<SupabaseService>(args => new SupabaseService(url, key, args.GetRequiredService<AuthenticationStateProvider>(), args.GetRequiredService<ILocalStorageService>(), args.GetRequiredService<ILogger<SupabaseService>>() ));
 

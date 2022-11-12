@@ -68,7 +68,7 @@ public class SupabaseService
             var listas = await instance.From<Lista>().Get();
             foreach (var item in listas.Models)
             {
-                Console.WriteLine(item.titulo);
+                Console.WriteLine(item.Titulo);
             }
 
         }
@@ -137,7 +137,7 @@ public class SupabaseService
             var listas = await instance.From<Lista>().Get();
             foreach (var item in listas.Models)
             {
-                Console.WriteLine(item.titulo);
+                Console.WriteLine(item.Titulo);
             }
 
 
