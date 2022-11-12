@@ -1,4 +1,6 @@
-﻿using BlazorWebAssemblySupabaseTemplate.Dtos;
+﻿using Blazored.LocalStorage;
+using BlazorWebAssemblySupabaseTemplate.Dtos;
+using Microsoft.AspNetCore.Components.Authorization;
 using Supabase.Gotrue;
 using Supabase.Realtime;
 
@@ -7,10 +9,19 @@ namespace BlazorWebAssemblySupabaseTemplate.Services;
 public class SupabaseService
 {
     public readonly Supabase.Client instance;
+    private readonly AuthenticationStateProvider customAuthStateProvider;
+    private readonly ILocalStorageService localStorage;
     private readonly ILogger<SupabaseService> logger;
 
-    public SupabaseService(string url, string key, ILogger<SupabaseService> logger) : base()
+    public SupabaseService(
+        string url, 
+        string key, 
+        AuthenticationStateProvider CustomAuthStateProvider, 
+        ILocalStorageService localStorage,
+        ILogger<SupabaseService> logger) : base()
     {
+        customAuthStateProvider = CustomAuthStateProvider;
+        this.localStorage = localStorage;
         this.logger = logger;
         logger.LogTrace("CONSTRUCTOR: SupabaseService");
 
@@ -25,7 +36,22 @@ public class SupabaseService
 
         instance = Supabase.Client.Instance;
 
-        readDatabaseTest();
+        Login("user", "password");
+        // readDatabaseTest();
+    }
+
+    public async void Login(string user, string password)
+    {
+        logger.LogTrace("SupabaseService - METHOD: Login");
+        
+        Session session = await instance.Auth.SignIn("cliente1@gmail.com", "senhasdadasdaasd");
+        logger.LogTrace("User logged in");
+        logger.LogTrace("instance.Auth.CurrentUser.Id");
+        logger.LogTrace(instance.Auth.CurrentUser.Id);
+        logger.LogTrace("instance.Auth.CurrentUser.Email");
+        logger.LogTrace(instance.Auth.CurrentUser.Email);
+        
+        await localStorage.SetItemAsStringAsync("token", session.AccessToken);
     }
 
     private async void readDatabaseTest()
