@@ -7,9 +7,12 @@ namespace BlazorWebAssemblySupabaseTemplate.Services;
 public class SupabaseService
 {
     public readonly Supabase.Client instance;
-    public SupabaseService(string url, string key)
+    private readonly ILogger<SupabaseService> logger;
+
+    public SupabaseService(string url, string key, ILogger<SupabaseService> logger) : base()
     {
-        Console.WriteLine("CONSTRUCTOR: SupabaseService");
+        this.logger = logger;
+        logger.LogTrace("CONSTRUCTOR: SupabaseService");
 
         Supabase.Client.InitializeAsync(
                 url,
