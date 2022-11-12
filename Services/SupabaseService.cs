@@ -23,7 +23,7 @@ public class SupabaseService
         customAuthStateProvider = CustomAuthStateProvider;
         this.localStorage = localStorage;
         this.logger = logger;
-        logger.LogTrace("CONSTRUCTOR: SupabaseService");
+        logger.LogInformation("CONSTRUCTOR: SupabaseService");
 
         Supabase.Client.InitializeAsync(
                 url,
@@ -42,14 +42,12 @@ public class SupabaseService
 
     public async void Login(string user, string password)
     {
-        logger.LogTrace("SupabaseService - METHOD: Login");
+        logger.LogInformation("METHOD: Login");
         
         Session session = await instance.Auth.SignIn("cliente1@gmail.com", "senhasdadasdaasd");
-        logger.LogTrace("User logged in");
-        logger.LogTrace("instance.Auth.CurrentUser.Id");
-        logger.LogTrace(instance.Auth.CurrentUser.Id);
-        logger.LogTrace("instance.Auth.CurrentUser.Email");
-        logger.LogTrace(instance.Auth.CurrentUser.Email);
+        logger.LogInformation("------------------- User logged in -------------------");
+        logger.LogInformation($"instance.Auth.CurrentUser.Id {instance.Auth.CurrentUser.Id}");
+        logger.LogInformation($"instance.Auth.CurrentUser.Email {instance.Auth.CurrentUser.Email}");
         
         await localStorage.SetItemAsStringAsync("token", session.AccessToken);
     }
