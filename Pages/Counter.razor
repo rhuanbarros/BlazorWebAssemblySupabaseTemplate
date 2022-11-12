@@ -8,6 +8,15 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<AuthorizeView Roles="Iron Man">
+    <Authorized>
+        <span>You're authorized as @context.User.Identity.Name</span>
+    </Authorized>
+    <NotAuthorized>
+        <span>You're not authorized, buddy.</span>
+    </NotAuthorized>
+</AuthorizeView>
+
 @code {
     private int currentCount = 0;
 
