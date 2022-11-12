@@ -7,12 +7,68 @@
 
 <div class="pa-16">
 
-    @if(ListaList != null)
+<MudCard>
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h5">Listas de compras</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            @* <MudButton Variant="Variant.Filled" Color="MudBlazor.Color.Primary" OnClick="CreateListaAsync">Criar nova
+                lista</MudButton> *@
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudTable Items="@_listaListFiltered" @ref="table" Elevation="1" Bordered="false" Striped="true" Hover="true"
+            SortLabel="Sort By"
+            T="Lista"
+            >
+            <ToolBarContent>
+                <MudTextField T="string" 
+                    Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
+                    IconSize="MudBlazor.Size.Medium" Class="mt-0" 
+                    Clearable="true"
+                    ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" />
+            </ToolBarContent>
+            <HeaderContent>
+                <MudTh>
+                    <MudTableSortLabel SortBy="new Func<Lista, object>(x=>x.titulo)">
+                        Título
+                    </MudTableSortLabel>
+                </MudTh>
+                <MudTh>
+                    Action
+                </MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Título">@context?.titulo</MudTd>
+                <MudTd>
+                    @* <MudIconButton Icon="@Icons.Material.Filled.Edit" aria-label="edit"
+                        Size="MudBlazor.Size.Small"
+                        OnClick="@( (e) => {NavigationManager.NavigateTo($"/listaitems/{context?.Lista?.Id}");})" 
+                        />
+                    <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete"
+                        Size="MudBlazor.Size.Small"
+                        OnClick="@(async (e) => {await DeleteListaAsync(context?.Lista);})" 
+                        /> *@
+                </MudTd>
+            </RowTemplate>
+            <PagerContent>
+                <MudTablePager PageSizeOptions="new int[]{50, 100}" />
+            </PagerContent>
+        </MudTable>
+    </MudCardContent>
+
+</MudCard>
+
+
+
+
+    @* @if(ListaList != null)
     {
         @foreach (Lista item in ListaList)
         {
             <p>@item.titulo</p>
         }
-    }
+    } *@
 
 </div>
