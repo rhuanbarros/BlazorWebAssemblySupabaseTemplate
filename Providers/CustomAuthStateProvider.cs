@@ -9,16 +9,20 @@ namespace BlazorWebAssemblySupabaseTemplate.Providers;
 
 public class CustomAuthStateProvider : AuthenticationStateProvider
 {
+    // private readonly IHttpClientFactory httpClientFactory;
+
     // private readonly ILocalStorageService _localStorage;
-    private readonly HttpClient _http;
+    // private readonly HttpClient _http;
 
     public CustomAuthStateProvider(
+        // IHttpClientFactory httpClientFactory
         // ILocalStorageService localStorage, 
-        HttpClient http
+        // HttpClient http
     )
     {
+        // this.httpClientFactory = httpClientFactory;
         // _localStorage = localStorage;
-        _http = http;
+        // _http = http;
     }
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
@@ -28,13 +32,13 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
         string token = "";
 
         var identity = new ClaimsIdentity();
-        _http.DefaultRequestHeaders.Authorization = null;
+        // _http.DefaultRequestHeaders.Authorization = null;
 
         if (!string.IsNullOrEmpty(token))
         {
             identity = new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt");
-            _http.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", token.Replace("\"", ""));
+            // _http.DefaultRequestHeaders.Authorization =
+            //     new AuthenticationHeaderValue("Bearer", token.Replace("\"", ""));
         }
 
         var user = new ClaimsPrincipal(identity);
