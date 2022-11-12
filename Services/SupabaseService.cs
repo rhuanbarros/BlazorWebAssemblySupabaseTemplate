@@ -51,6 +51,12 @@ public class SupabaseService
         
         await localStorage.SetItemAsStringAsync("token", session.AccessToken);
     }
+    
+    // public async Task Logout()
+    // {
+    //     await localStorage.RemoveItemAsync("token");
+    //     await AuthStateProvider.GetAuthenticationStateAsync();
+    // }
 
     private async void readDatabaseTest()
     {
