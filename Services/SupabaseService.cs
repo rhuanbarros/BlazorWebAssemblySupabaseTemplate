@@ -36,27 +36,29 @@ public class SupabaseService
 
         instance = Supabase.Client.Instance;
 
-        Login("user", "password");
+        // Login("user", "password");
         // readDatabaseTest();
     }
 
-    public async void Login(string user, string password)
+    public async Task Login(string email, string password)
     {
         logger.LogInformation("METHOD: Login");
         
-        Session session = await instance.Auth.SignIn("cliente1@gmail.com", "senhasdadasdaasd");
+        Session session = await instance.Auth.SignIn(email, password);
+
         logger.LogInformation("------------------- User logged in -------------------");
         logger.LogInformation($"instance.Auth.CurrentUser.Id {instance.Auth.CurrentUser.Id}");
         logger.LogInformation($"instance.Auth.CurrentUser.Email {instance.Auth.CurrentUser.Email}");
         
         await localStorage.SetItemAsStringAsync("token", session.AccessToken);
+        await customAuthStateProvider.GetAuthenticationStateAsync();
     }
     
-    // public async Task Logout()
-    // {
-    //     await localStorage.RemoveItemAsync("token");
-    //     await AuthStateProvider.GetAuthenticationStateAsync();
-    // }
+    public async Task Logout()
+    {
+        await localStorage.RemoveItemAsync("token");
+        await customAuthStateProvider.GetAuthenticationStateAsync();
+    }
 
     private async void readDatabaseTest()
     {

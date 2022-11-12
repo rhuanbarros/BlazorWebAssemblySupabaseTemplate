@@ -1,5 +1,9 @@
 ﻿@inherits LayoutComponentBase
 
+@inject SupabaseService SupabaseService
+@inject NavigationManager NavigationManager
+@inject ISnackbar Snackbar
+
 <MudThemeProvider/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
@@ -11,10 +15,10 @@
     
         <AuthorizeView>
             <Authorized>
-                <MudChip Link="/login" Color="Color.Primary">Logout</MudChip>
+                <MudChip Color="Color.Primary" OnClick="OnClickLogout">Logout</MudChip>
             </Authorized>
             <NotAuthorized>
-                <MudChip Color="Color.Primary">Login</MudChip>                
+                <MudChip Color="Color.Primary" Link="/login">Login</MudChip>                
             </NotAuthorized>
         </AuthorizeView>
     </MudAppBar>
@@ -31,8 +35,6 @@
     </MudList>
     </MudDrawer>
     <MudMainContent Class="d-flex flex-column" Style="height:100vh !important">
-        @* <MudContainer MaxWidth="MaxWidth.False" Class="flex pa-0 ma-0" Style="height: 100% !important"> *@
             @Body
-        @* </MudContainer> *@
     </MudMainContent>
 </MudLayout>

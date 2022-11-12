@@ -8,4 +8,11 @@ public partial class MainLayout
     {
         _drawerOpen = !_drawerOpen;
     }
+
+    private async Task OnClickLogout()
+    {
+        await SupabaseService.Logout();
+        Snackbar.Add("Logout successfull");
+        NavigationManager.NavigateTo($"/");
+    }
 }
