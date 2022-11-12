@@ -24,9 +24,16 @@ public partial class CrudPage
         await InvokeAsync(StateHasChanged);
     }
 
-    private async void OnSearch(string text)
+    private async Task OnValueChangedSearch(string text)
     {
         _listaListFiltered = _listaList.Where(arg => arg.titulo.Contains(text)).ToList();
+    }
+    
+    private async Task OnClickDelete(Lista item)
+    {
+        await SupabaseClient.From<Lista>().Delete(item);
+        
+        await GetTable();
     }
 
 }

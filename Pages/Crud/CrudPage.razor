@@ -27,7 +27,7 @@
                     Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
                     IconSize="MudBlazor.Size.Medium" Class="mt-0" 
                     Clearable="true"
-                    ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" />
+                    ValueChanged="@(s=>OnValueChangedSearch(s))" Placeholder="Search" />
             </ToolBarContent>
             <HeaderContent>
                 <MudTh>
@@ -45,11 +45,11 @@
                     @* <MudIconButton Icon="@Icons.Material.Filled.Edit" aria-label="edit"
                         Size="MudBlazor.Size.Small"
                         OnClick="@( (e) => {NavigationManager.NavigateTo($"/listaitems/{context?.Lista?.Id}");})" 
-                        />
+                        /> *@
                     <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete"
                         Size="MudBlazor.Size.Small"
-                        OnClick="@(async (e) => {await DeleteListaAsync(context?.Lista);})" 
-                        /> *@
+                        OnClick="@(async (e) => {await OnClickDelete(context);})" 
+                        /> 
                 </MudTd>
             </RowTemplate>
             <PagerContent>
