@@ -26,13 +26,18 @@
         <MudDrawerHeader>
             <MudText Typo="Typo.h5" Class="mt-1">Application</MudText>
         </MudDrawerHeader>
-        <MudList Clickable="true">
-        <MudListItem Text="Inbox" Icon="@Icons.Material.Filled.Inbox" />
-        <MudListItem Text="Sent" Icon="@Icons.Material.Filled.Send" />
-        <MudDivider />
-        <MudListItem Text="Trash" />
-        <MudListItem Text="Spam" />
-    </MudList>
+        
+@* ********************************** MENU ********************************** *@
+
+        <MudNavMenu Color="Color.Secondary">
+            <MudNavLink Href="/crud" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storage">
+                Crud table
+            </MudNavLink>
+        </MudNavMenu>
+
+
+@* ********************************** MENU ********************************** *@
+    
     </MudDrawer>
     <MudMainContent Class="d-flex flex-column" Style="height:100vh !important">
             @Body

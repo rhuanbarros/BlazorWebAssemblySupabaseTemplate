@@ -1,0 +1,18 @@
+@page "/crud"
+@using Dtos
+
+@inject SupabaseService SupabaseService
+@inject NavigationManager NavigationManager
+@inject ISnackbar Snackbar
+
+<div class="pa-16">
+
+    @if(ListaList != null)
+    {
+        @foreach (Lista item in ListaList)
+        {
+            <p>@item.titulo</p>
+        }
+    }
+
+</div>
