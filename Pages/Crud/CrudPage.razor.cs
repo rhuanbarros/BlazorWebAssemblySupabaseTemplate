@@ -42,11 +42,14 @@ public partial class CrudPage
     private bool success = false;
     string[] errors = { };
     MudForm form;
+    private bool _processingNewItem = false;
     private async Task OnClickSave()
     {
+        _processingNewItem = true;
         await DatabaseService.Insert<Lista>(model);
         model = new();
         await GetTable();
         success = false;
+        _processingNewItem = false;
     }
 }
