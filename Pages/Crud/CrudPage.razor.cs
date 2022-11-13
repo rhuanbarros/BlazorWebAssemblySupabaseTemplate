@@ -41,7 +41,7 @@ public partial class CrudPage
     protected Lista model = new();
     private bool success = false;
     string[] errors = { };
-    MudForm form;
+    MudForm? form;
     private bool _processingNewItem = false;
     private async Task OnClickSave()
     {

@@ -12,6 +12,6 @@ public class Lista : BaseModel
     public int Id { get; set; }
 
     [Column("Titulo")]
-    public string Titulo { get; set; }
+    public string? Titulo { get; set; }
 
 }
