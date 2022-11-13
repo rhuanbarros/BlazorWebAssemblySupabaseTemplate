@@ -36,4 +36,15 @@ public partial class CrudPage
         await GetTable();
     }
 
+    protected Lista model = new();
+    private bool success;
+    string[] errors = { };
+    MudForm form;
+    private async Task OnClickSave()
+    {
+        await SupabaseClient.From<Lista>().Insert(model);
+        model = new();
+        await GetTable();
+        success = false;
+    }
 }
