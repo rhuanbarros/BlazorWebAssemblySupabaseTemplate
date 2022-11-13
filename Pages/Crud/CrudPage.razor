@@ -1,7 +1,7 @@
 @page "/crud"
 @using Dtos
 
-@inject SupabaseService SupabaseService
+@inject DatabaseService DatabaseService
 @inject NavigationManager NavigationManager
 @inject ISnackbar Snackbar
 
@@ -9,7 +9,7 @@
 
     <MudText Typo="Typo.h5">Lists</MudText>
     <br>
-    <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+    <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors" ValidationDelay="0">
         <MudCard>
             <MudCardHeader>
                 <CardHeaderContent>

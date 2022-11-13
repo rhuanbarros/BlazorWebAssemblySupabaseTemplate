@@ -7,7 +7,7 @@ public partial class Login
 
     public async Task OnClickLogin()
     {
-        await SupabaseService.Login(email, password);
+        await AuthService.Login(email, password);
         Snackbar.Add("Login successfull");
         NavigationManager.NavigateTo($"/");
     }

@@ -6,43 +6,45 @@ namespace BlazorWebAssemblySupabaseTemplate.Pages.Crud;
 
 public partial class CrudPage
 {
-    protected Supabase.Client SupabaseClient;
     protected override async Task OnInitializedAsync()
     {
-        SupabaseClient = SupabaseService.instance;
         await GetTable();
     }
 
-    private IReadOnlyList<Lista> _listaList { get; set; }
-    private IReadOnlyList<Lista> _listaListFiltered { get; set; }
-    private MudTable<Lista> table;
+    // ---------------- SELECT TABLE
+    private IReadOnlyList<Lista>? _listaList { get; set; }
+    private IReadOnlyList<Lista>? _listaListFiltered { get; set; }
+    private MudTable<Lista>? table;
     protected async Task GetTable()
     {
-        Postgrest.Responses.ModeledResponse<Lista> modeledResponse = await SupabaseClient.From<Lista>().Get();
-        _listaList = modeledResponse.Models;
-        _listaListFiltered = modeledResponse.Models;
+        IReadOnlyList<Lista> listas = await DatabaseService.From<Lista>();
+        _listaList = listas;
+        _listaListFiltered = listas;
         await InvokeAsync(StateHasChanged);
     }
 
-    private async Task OnValueChangedSearch(string text)
+    // ---------------- SEARCH
+    private void OnValueChangedSearch(string text)
     {
-        _listaListFiltered = _listaList.Where(arg => arg.Titulo.Contains(text)).ToList();
+        _listaListFiltered = _listaList?.Where(row => row.Titulo.Contains(text)).ToList();
     }
     
+    // ---------------- DELETE
     private async Task OnClickDelete(Lista item)
     {
-        await SupabaseClient.From<Lista>().Delete(item);
-        
+        await DatabaseService.Delete<Lista>(item);        
         await GetTable();
     }
 
+    // ---------------- CREATE NEW
+
     protected Lista model = new();
-    private bool success;
+    private bool success = false;
     string[] errors = { };
     MudForm form;
     private async Task OnClickSave()
     {
-        await SupabaseClient.From<Lista>().Insert(model);
+        await DatabaseService.Insert<Lista>(model);
         model = new();
         await GetTable();
         success = false;

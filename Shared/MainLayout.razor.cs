@@ -11,7 +11,7 @@ public partial class MainLayout
 
     private async Task OnClickLogout()
     {
-        await SupabaseService.Logout();
+        await AuthService.Logout();
         Snackbar.Add("Logout successfull");
         NavigationManager.NavigateTo($"/");
     }
