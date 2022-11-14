@@ -17,13 +17,15 @@
                 </CardHeaderContent>
             </MudCardHeader>
             <MudCardContent>
-                <MudTextField Label="Titulo" @bind-Value="model.Titulo" For="@(() => model.Titulo)" Required="true" Immediate="true"/>
+                <MudTextField Label="Titulo" @bind-Value="model.Titulo" For="@(() => model.Titulo)" Required="true"
+                    Immediate="true" />
             </MudCardContent>
             <MudCardActions>
-                <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" Class="ml-auto" OnClick="OnClickSave">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" Class="ml-auto"
+                    OnClick="OnClickSave">
                     @if (_processingNewItem)
                     {
-                        <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
+                        <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
                         <MudText Class="ms-2">Processing</MudText>
                     }
                     else
@@ -38,20 +40,45 @@
 
     <br>
 
-    @if(_listaListFiltered == null )
+    @if (_listaListFiltered == null)
     {
-        <MudProgressCircular Class="ms-n1" Size="Size.Medium" Indeterminate="true"/>
-    } else if(_listaListFiltered.Count == 0)
+        <MudSimpleTable>
+            <thead>
+                <tr>                    
+                    <th>Título</th>
+                    <th>Action</th>                    
+                </tr>
+            </thead>
+            <tbody>                
+                <tr>                    
+                    <td><MudSkeleton /></td>
+                    <td><MudSkeleton /></td>
+                </tr>                
+            </tbody>
+        </MudSimpleTable>
+    }
+    else if (_listaListFiltered.Count == 0)
     {
-        <MudText Typo="Typo.h5">There is no items in this table.</MudText>
-    } else
+        <MudSimpleTable>
+            <thead>
+                <tr>                    
+                    <th>Título</th>
+                    <th>Action</th>                    
+                </tr>
+            </thead>
+            <tbody>                
+                <MudText Typo="Typo.h5">There is no items in this table.</MudText>
+            </tbody>
+        </MudSimpleTable>
+    }
+    else
     {
         <MudTable Items="@_listaListFiltered" @ref="table" Elevation="1" Bordered="false" Striped="true" Hover="true"
-            SortLabel="Sort By" T="Lista" >
+        SortLabel="Sort By" T="Lista">
             <ToolBarContent>
                 <MudTextField T="string" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
-                    IconSize="MudBlazor.Size.Medium" Class="mt-0" Clearable="true"
-                    ValueChanged="@(s=>OnValueChangedSearch(s))" Placeholder="Search" />
+                IconSize="MudBlazor.Size.Medium" Class="mt-0" Clearable="true"
+                ValueChanged="@(s=>OnValueChangedSearch(s))" Placeholder="Search" />
             </ToolBarContent>
             <HeaderContent>
                 <MudTh>
@@ -71,7 +98,7 @@
                         OnClick="@( (e) => {NavigationManager.NavigateTo($"/listaitems/{context?.Lista?.Id}");})"
                         /> *@
                     <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete" Size="MudBlazor.Size.Small"
-                        OnClick="@(async (e) => {await OnClickDelete(context);})" />
+                    OnClick="@(async (e) => {await OnClickDelete(context);})" />
                 </MudTd>
             </RowTemplate>
             <PagerContent>

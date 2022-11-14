@@ -17,6 +17,7 @@ public partial class CrudPage
     private MudTable<Lista>? table;
     protected async Task GetTable()
     {
+        // await Task.Delay(10000);
         IReadOnlyList<Lista> listas = await DatabaseService.From<Lista>();
         _listaList = listas;
         _listaListFiltered = listas;
