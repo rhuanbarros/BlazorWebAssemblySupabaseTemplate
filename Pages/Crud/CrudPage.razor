@@ -45,7 +45,7 @@
         <MudSimpleTable>
             <thead>
                 <tr>    
-                    <th>Título</th>
+                    <th>Title</th>
                     <th>Action</th>    
                 </tr>
             </thead>
@@ -85,7 +85,7 @@
             <HeaderContent>
                 <MudTh>
                     <MudTableSortLabel SortBy="new Func<Todo, object>(x=>x.Title)">
-                        Título
+                        Title
                     </MudTableSortLabel>
                 </MudTh>
                 <MudTh>
@@ -93,7 +93,7 @@
                 </MudTh>
             </HeaderContent>
             <RowTemplate>
-                <MudTd DataLabel="Título">@context?.Title</MudTd>
+                <MudTd DataLabel="Title">@context?.Title</MudTd>
                 <MudTd DataLabel="Action">
                     @* <MudIconButton Icon="@Icons.Material.Filled.Edit" aria-label="edit"
                         Size="MudBlazor.Size.Small"
