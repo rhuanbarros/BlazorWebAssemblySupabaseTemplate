@@ -14,4 +14,11 @@ public class Todo : BaseModel
     [Column("Title")]
     public string? Title { get; set; }
 
+    [Column("SoftDelete")]
+    public bool? SoftDelete { get; set; }
+    // public string? SoftDelete { get; set; }
+    
+    [Column("SoftDeletedAt")]
+    public DateTime? SoftDeletedAt { get; set; }
+
 }
