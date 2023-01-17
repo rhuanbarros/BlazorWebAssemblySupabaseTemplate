@@ -15,7 +15,7 @@ public class Todo : BaseModel
     public string? Title { get; set; }
 
     [Column("SoftDelete")]
-    public bool? SoftDelete { get; set; }  // type bool works fine throw Unhandled exception rendering component: Key should reference a Model Property.
+    public bool? SoftDelete { get; set; }  // type bool don't work. Throw Unhandled exception rendering component: Key should reference a Model Property.
     // public string? SoftDelete { get; set; }  // type string works fine
     
     [Column("SoftDeletedAt")]
